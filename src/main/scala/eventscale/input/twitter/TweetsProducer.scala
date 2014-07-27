@@ -16,6 +16,9 @@ object TweetsProducer {
 
 class TweetsProducer(config: TwitterConfig) extends ActorProducer[TweetEvent] with ActorLogging {
   val twitterStream = config.getStream()
+
+  var counter = 0
+
   override def receive: Receive = {
     case StartTwitterStream(searchTerms) =>
       log.debug("Start streaming Tweets")
@@ -28,7 +31,9 @@ class TweetsProducer(config: TwitterConfig) extends ActorProducer[TweetEvent] wi
       twitterStream.shutdown()
 
     case status: Status =>
-      println(status)
+      //println(status.getGeoLocation.toString)
+      counter += 1
+      print(s"\r$counter Tweets received")
   }
 
   def statusListener = new StatusListener {
