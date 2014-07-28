@@ -9,12 +9,12 @@ import eventscale.model.twitter.StopTwitterStream
 import eventscale.model.twitter.TweetEvent
 import eventscale.model.twitter.StartTwitterStream
 
-object TweetsProducer {
+object TwitterProducer {
   def props(config: TwitterConfig): Props =
-    Props(new TweetsProducer(config))
+    Props(new TwitterProducer(config))
 }
 
-class TweetsProducer(config: TwitterConfig) extends ActorProducer[TweetEvent] with ActorLogging {
+class TwitterProducer(config: TwitterConfig) extends ActorProducer[Status] with ActorLogging {
   val twitterStream = config.getStream()
 
   var counter = 0
@@ -31,9 +31,9 @@ class TweetsProducer(config: TwitterConfig) extends ActorProducer[TweetEvent] wi
       twitterStream.shutdown()
 
     case status: Status =>
-      //println(status.getGeoLocation.toString)
+      if (isActive && totalDemand > 0)
+        onNext(status)
       counter += 1
-      print(s"\r$counter Tweets received")
   }
 
   def statusListener = new StatusListener {
