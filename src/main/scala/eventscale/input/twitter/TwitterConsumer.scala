@@ -27,7 +27,15 @@ class TwitterConsumer extends ActorConsumer {
   }
 
   private def processTweet(status: Status) = {
-    println(status.getUser.getName)
+    println(status.getText)
+    inFlight -= 1
+  }
+
+  private def processGeoTweet(status: Status) = {
+    if (status.getGeoLocation != null) {
+      println(status.getGeoLocation.getLatitude + ", "
+        + status.getGeoLocation.getLongitude)
+    }
     inFlight -= 1
   }
 }
