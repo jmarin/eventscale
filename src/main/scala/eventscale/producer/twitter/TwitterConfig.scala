@@ -1,4 +1,4 @@
-package eventscale.input.twitter
+package eventscale.producer.twitter
 
 import java.io.File
 import twitter4j.conf.{ ConfigurationBuilder, Configuration }

@@ -37,4 +37,4 @@ libraryDependencies ++= {
 
 initialCommands := """import eventscale._""".stripMargin
 
-addCommandAlias("twitter", "runMain eventscale.input.twitter.TwitterService -Dtwitter4j.loggerFactory=twitter4j.NullLoggerFactory -Dakka.remote.netty.tcp.port=2551 -Dakka.remote.netty.tcp.hostname=127.0.0.1 -Dclustering.seed-ip=127.0.0.1 -Dclustering.seed-port=2551")
+addCommandAlias("twitter", "runMain eventscale.producer.twitter.TwitterService -Dtwitter4j.loggerFactory=twitter4j.NullLoggerFactory -Dakka.remote.netty.tcp.port=2551 -Dakka.remote.netty.tcp.hostname=127.0.0.1 -Dclustering.seed-ip=127.0.0.1 -Dclustering.seed-port=2551")
