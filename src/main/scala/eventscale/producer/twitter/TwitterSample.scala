@@ -15,7 +15,7 @@ import eventscale.model.twitter.TweetEvent
 import eventscale.processor.EventProcessor
 import eventscale.consumer.ConsoleConsumer
 
-object TwitterService extends BaseApp with EventProcessor {
+object TwitterSample extends BaseApp with EventProcessor {
   override protected def run(system: ActorSystem, opts: Map[String, String]): Unit = {
     val twitterService = system.actorOf(
       TwitterProducer.props(
@@ -33,8 +33,6 @@ object TwitterService extends BaseApp with EventProcessor {
 
     implicit val s: ActorSystem = system
 
-    implicit val e = system.dispatcher
-
     implicit val m = FlowMaterializer(MaterializerSettings())
 
     def isGeolocation(e: TweetEvent): Boolean = e.status.getGeoLocation != null
@@ -45,6 +43,6 @@ object TwitterService extends BaseApp with EventProcessor {
     //Process with a filter, showing only tweets that have geolocation
     //process(tweetProducer, isGeolocation, tweetConsumer)
 
- }
+  }
 
 }

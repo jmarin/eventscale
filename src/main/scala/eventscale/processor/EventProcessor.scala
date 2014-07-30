@@ -16,6 +16,6 @@ trait EventProcessor {
   def process[T](p: Producer[T], c: Consumer[T])(implicit m: FlowMaterializer): Unit =
     Flow(p).produceTo(m, c)
 
-  def process[T](p: Producer[T], ef: (T) => Boolean, c: Consumer[T])(implicit m: FlowMaterializer): Unit =
-    Flow(p).filter(ef).produceTo(m, c)
+  def process[T](p: Producer[T], f: (T) => Boolean, c: Consumer[T])(implicit m: FlowMaterializer): Unit =
+    Flow(p).filter(f).produceTo(m, c)
 }
