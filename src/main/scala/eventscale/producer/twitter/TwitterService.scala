@@ -25,30 +25,26 @@ object TwitterService extends BaseApp with EventProcessor {
     //twitterService ! StartTwitterStream(Some(Array("iphone")))
     twitterService ! StartTwitterStream(None)
 
-    val tweetProducer = getProducer(twitterService)
+    val tweetProducer: Producer[TweetEvent] = producer(twitterService)
 
-    val consumer = system.actorOf(ConsoleConsumer.props(1000))
+    val c = system.actorOf(ConsoleConsumer.props(1000))
 
-    val tweetConsumer = getConsumer(consumer)
+    val tweetConsumer: Consumer[TweetEvent] = consumer(c)
 
-    implicit val sys: ActorSystem = system
+    implicit val s: ActorSystem = system
 
-    implicit val executor = system.dispatcher
+    implicit val e = system.dispatcher
 
-    val m = FlowMaterializer(MaterializerSettings())
+    implicit val m = FlowMaterializer(MaterializerSettings())
 
-    Flow(tweetProducer)
-      .filter(e => e match {
-        case e: TweetEvent => e.status.getText.length < 70
-        case _ => false
-      }
-      )
-      .filter(e => e match {
-        case e: TweetEvent => e.status.getGeoLocation != null
-        case _ => false
-      })
-      .produceTo(m, tweetConsumer)
+    def isGeolocation(e: TweetEvent): Boolean = e.status.getGeoLocation != null
 
-  }
+    //Process, shows tweets on console output
+    process(tweetProducer, tweetConsumer)
+
+    //Process with a filter, showing only tweets that have geolocation
+    //process(tweetProducer, isGeolocation, tweetConsumer)
+
+ }
 
 }
