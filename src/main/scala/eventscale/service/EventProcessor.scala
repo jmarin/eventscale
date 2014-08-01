@@ -1,4 +1,4 @@
-package eventscale.processor
+package eventscale.service
 
 import akka.actor.ActorRef
 import org.reactivestreams.api.{ Consumer, Producer }

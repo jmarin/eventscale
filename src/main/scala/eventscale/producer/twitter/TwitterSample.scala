@@ -12,20 +12,20 @@ import akka.stream.{ FlowMaterializer, MaterializerSettings }
 import akka.stream.scaladsl.Flow
 import eventscale.model.Event
 import eventscale.model.twitter.TweetEvent
-import eventscale.processor.EventProcessor
+import eventscale.service.EventProcessor
 import eventscale.consumer.ConsoleConsumer
 
 object TwitterSample extends BaseApp with EventProcessor {
   override protected def run(system: ActorSystem, opts: Map[String, String]): Unit = {
-    val twitterService = system.actorOf(
+    val twitterStream = system.actorOf(
       TwitterProducer.props(
         new TwitterConfig(
           new File("src/main/resources/twitter-config.conf"))))
 
-    //twitterService ! StartTwitterStream(Some(Array("iphone")))
-    twitterService ! StartTwitterStream(None)
+    //twitterStream ! StartTwitterStream(Some(Array("iphone")))
+    twitterStream ! StartTwitterStream(None)
 
-    val tweetProducer: Producer[TweetEvent] = producer(twitterService)
+    val tweetProducer: Producer[TweetEvent] = producer(twitterStream)
 
     val c = system.actorOf(ConsoleConsumer.props(1000))
 
