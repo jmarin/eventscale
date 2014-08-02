@@ -1,3 +1,5 @@
+import com.typesafe.sbt.web.SbtWeb
+
 name := """eventscale"""
 
 version := "1.0-SNAPSHOT"
@@ -6,7 +8,7 @@ org.scalastyle.sbt.ScalastylePlugin.Settings
 
 lazy val backend = project
 
-lazy val root = (project in file(".")).enablePlugins(PlayScala)
+lazy val root = (project in file(".")).enablePlugins(PlayScala, SbtWeb)
 
 scalaVersion := "2.11.1"
 
