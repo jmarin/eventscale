@@ -1,16 +1,14 @@
-name := "eventscale"
+name := """eventscale"""
 
-version := "0.1.0"
-
-scalaVersion := "2.11.1"
+version := "1.0-SNAPSHOT"
 
 org.scalastyle.sbt.ScalastylePlugin.Settings
 
-scalariformSettings
+lazy val backend = project
 
-resolvers ++= Seq(
-  "Typesafe Repository" at "http://repo.typesafe.com/typesafe/releases/"  
-)
+lazy val root = (project in file(".")).enablePlugins(PlayScala)
+
+scalaVersion := "2.11.1"
 
 scalacOptions in ThisBuild ++= Seq("-unchecked", "-deprecation", "-feature")
 
@@ -35,6 +33,12 @@ libraryDependencies ++= {
   )
 }
 
-initialCommands := """import eventscale._""".stripMargin
+initialCommands := """import actors.boot._""".stripMargin
 
-addCommandAlias("twitter-sample", "runMain eventscale.producer.twitter.TwitterSample -Dtwitter4j.loggerFactory=twitter4j.NullLoggerFactory -Dakka.remote.netty.tcp.port=2551 -Dakka.remote.netty.tcp.hostname=127.0.0.1 -Dclustering.seed-ip=127.0.0.1 -Dclustering.seed-port=2551")
+addCommandAlias("n1", "runMain actors.boot.EventscaleCluster -Dakka.remote.netty.tcp.port=2551")
+
+addCommandAlias("n2", "runMain actors.boot.EventscaleCluster")
+
+addCommandAlias("twitter-sample", "runMain actors.producer.twitter.TwitterSample -Dtwitter4j.loggerFactory=twitter4j.NullLoggerFactory -Dakka.remote.netty.tcp.port=2551 -Dakka.remote.netty.tcp.hostname=127.0.0.1 -Dclustering.seed-ip=127.0.0.1 -Dclustering.seed-port=2551")
+
+
