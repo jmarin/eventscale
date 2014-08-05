@@ -14,12 +14,16 @@ scalaVersion := "2.11.1"
 
 scalacOptions in ThisBuild ++= Seq("-unchecked", "-deprecation", "-feature")
 
+pipelineStages := Seq(rjs, digest)
+
 libraryDependencies ++= {
   val akkaVersion = "2.3.4"
   val akkaStreamsVersion = "0.4"
   val logbackVersion = "1.1.2"
   val specsVersion = "2.3.13"
   val twitter4jVersion = "4.0.2"
+  val requirejsVersion = "2.1.14-1"
+  val bootstrapVersion = "3.2.0"
   Seq(
     "com.typesafe.akka" %% "akka-actor" % akkaVersion,
     "com.typesafe.akka" %% "akka-remote" % akkaVersion,
@@ -31,7 +35,9 @@ libraryDependencies ++= {
     "com.typesafe.akka" %% "akka-persistence-experimental" % akkaVersion,
     "org.twitter4j" % "twitter4j-stream" % twitter4jVersion,
     "ch.qos.logback" % "logback-classic" % logbackVersion,
-    "org.specs2" %% "specs2" % specsVersion % "test"
+    "org.specs2" %% "specs2" % specsVersion % "test",
+    "org.webjars" % "requirejs" % requirejsVersion,
+    "org.webjars" % "bootstrap" % bootstrapVersion
   )
 }
 
