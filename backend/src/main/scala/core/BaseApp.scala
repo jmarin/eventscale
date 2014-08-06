@@ -31,9 +31,9 @@ abstract class BaseApp {
 
     val system = ActorSystem(s"$name-system")
     run(system, opts)
-    StdIn.readLine("Hit ENTER to quit ...")
-    system.shutdown()
-    system.awaitTermination()
+    //StdIn.readLine("Hit ENTER to quit ...")
+    //system.shutdown()
+    //system.awaitTermination()
   }
 
   protected def run(system: ActorSystem, opts: Map[String, String]): Unit
