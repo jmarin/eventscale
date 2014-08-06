@@ -8,8 +8,11 @@ object Dependencies {
     val logback = "1.1.2"
     val specs = "2.3.13"
     val twitter4j = "4.0.2"
-    val requirejs = "2.1.11-1"
+    val require = "2.1.11-1"
     val bootstrap = "3.2.0"
+    val angular = "1.3.0-beta.17"
+    val d3 = "3.4.11"
+    val underscore = "1.6.0-3"
   }
 
   lazy val frontend = common ++ webjars
@@ -26,9 +29,12 @@ object Dependencies {
   )
 
   val webjars = Seq(
-    "org.webjars" % "requirejs" % Version.requirejs,
-    "org.webjars" % "bootstrap" % Version.bootstrap,
-    "org.webjars" % "bootswatch-readable" % Version.bootstrap
+    "org.webjars" % "requirejs" % Version.require,
+    "org.webjars" % "bootstrap" % Version.bootstrap exclude ("org.webjars", "jquery"),
+    "org.webjars" % "bootswatch-readable" % Version.bootstrap exclude ("org.webjars", "jquery"),
+    "org.webjars" % "angularjs" % Version.angular exclude ("org.webjars", "jquery"),
+    "org.webjars" % "d3js" % Version.d3,
+    "org.webjars" % "underscorejs" % Version.underscore
   )
 
   val streams = Seq(

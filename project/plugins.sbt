@@ -25,3 +25,5 @@ addSbtPlugin("org.scalastyle" %% "scalastyle-sbt-plugin" % "0.4.0")
 //Scalariform plugin
 addSbtPlugin("com.typesafe.sbt" % "sbt-scalariform" % "1.3.0")
 
+// Enable this plugin to automatically refresh Chrome when you make changes to your app
+addSbtPlugin("com.jamesward" %% "play-auto-refresh" % "0.0.10")

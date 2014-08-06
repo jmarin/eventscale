@@ -26,7 +26,7 @@ lazy val frontend = project.in(file("frontend"))
   .enablePlugins(PlayScala, SbtWeb)
   .settings(
     name := "frontend",
-    libraryDependencies ++= Dependencies.frontend,
+    libraryDependencies ++= (Dependencies.frontend ++ Seq(filters, cache)),
     pipelineStages := Seq(rjs, digest, gzip),
     RjsKeys.paths += ("jsRoutes" -> ("/jsRoutes" -> "empty:"))
   )
