@@ -9,6 +9,7 @@ object Dependencies {
     val specs = "2.3.13"
     val twitter4j = "4.0.2"
     val requirejs = "2.1.11-1"
+    val bootstrap = "3.2.0"
   }
 
   lazy val frontend = common ++ webjars
@@ -25,7 +26,9 @@ object Dependencies {
   )
 
   val webjars = Seq(
-    "org.webjars" % "requirejs" % Version.requirejs  
+    "org.webjars" % "requirejs" % Version.requirejs,
+    "org.webjars" % "bootstrap" % Version.bootstrap,
+    "org.webjars" % "bootswatch-readable" % Version.bootstrap
   )
 
   val streams = Seq(
