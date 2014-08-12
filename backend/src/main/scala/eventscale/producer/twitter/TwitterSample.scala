@@ -1,19 +1,19 @@
 package eventscale.producer.twitter
 
-import core.BaseApp
 import akka.actor.{ ActorSystem, Actor, ActorRef }
+import core.BaseApp
 import java.io.File
 
-import eventscale.model.twitter.{ TweetEvent, StartTwitterStream }
-import twitter4j.Status
-import org.reactivestreams.api.{ Consumer, Producer }
 import akka.stream.actor.{ ActorConsumer, ActorProducer }
-import akka.stream.{ FlowMaterializer, MaterializerSettings }
 import akka.stream.scaladsl.Flow
+import akka.stream.{ FlowMaterializer, MaterializerSettings }
+import eventscale.consumer.ConsoleConsumer
 import eventscale.model.Event
 import eventscale.model.twitter.TweetEvent
+import eventscale.model.twitter.{ TweetEvent, StartTwitterStream }
 import eventscale.service.EventProcessor
-import eventscale.consumer.ConsoleConsumer
+import org.reactivestreams.api.{ Consumer, Producer }
+import twitter4j.Status
 
 object TwitterSample extends BaseApp with EventProcessor {
   override protected def run(system: ActorSystem, opts: Map[String, String]): Unit = {

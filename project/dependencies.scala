@@ -9,6 +9,7 @@ object Dependencies {
     val specs = "2.3.13"
     val twitter4j = "4.0.2"
     val require = "2.1.11-1"
+    val jquery = "1.11.1"
     val bootstrap = "3.2.0"
     val angular = "1.3.0-beta.17"
     val d3 = "3.4.11"
@@ -30,6 +31,7 @@ object Dependencies {
 
   val webjars = Seq(
     "org.webjars" % "requirejs" % Version.require,
+    "org.webjars" % "jquery" % Version.jquery,
     "org.webjars" % "bootstrap" % Version.bootstrap exclude ("org.webjars", "jquery"),
     "org.webjars" % "bootswatch-readable" % Version.bootstrap exclude ("org.webjars", "jquery"),
     "org.webjars" % "angularjs" % Version.angular exclude ("org.webjars", "jquery"),
