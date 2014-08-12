@@ -1,9 +1,9 @@
-package actors.consumer
+package eventscale.consumer
 
 import akka.actor.{ Props, ActorLogging }
 import akka.stream.actor.ActorConsumer
 import akka.stream.actor.ActorConsumer.{ OnNext, MaxInFlightRequestStrategy, RequestStrategy }
-import model.Event
+import eventscale.model.Event
 
 object ConsoleConsumer {
   def props(maxInFlight: Int): Props =

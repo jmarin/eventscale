@@ -1,7 +1,7 @@
-package model.twitter
+package eventscale.model.twitter
 
 import twitter4j.Status
-import model.Event
+import eventscale.model.Event
 
 case class TweetEvent(status: Status) extends Event {
   override def toString = status.getText

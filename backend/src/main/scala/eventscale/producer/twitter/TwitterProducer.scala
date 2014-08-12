@@ -1,12 +1,13 @@
-package actors.producer.twitter
+package eventscale.producer.twitter
 
 import akka.stream.actor.ActorProducer
+import eventscale.model.twitter.{ StopTwitterStream, StartTwitterStream, TweetEvent }
 import akka.actor.{ ActorLogging, Props }
 import java.io.File
 import twitter4j._
-import model.twitter.StopTwitterStream
-import model.twitter.TweetEvent
-import model.twitter.StartTwitterStream
+import eventscale.model.twitter.StopTwitterStream
+import eventscale.model.twitter.TweetEvent
+import eventscale.model.twitter.StartTwitterStream
 
 object TwitterProducer {
   def props(config: TwitterConfig): Props =

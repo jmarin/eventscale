@@ -1,10 +1,11 @@
-package actors.processor
+package eventscale.service
 
 import akka.actor.ActorRef
 import org.reactivestreams.api.{ Consumer, Producer }
 import akka.stream.FlowMaterializer
 import akka.stream.scaladsl.Flow
 import akka.stream.actor.{ ActorProducer, ActorConsumer }
+import eventscale.model.Event
 
 trait EventProcessor {
 
